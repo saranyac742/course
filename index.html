@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Green Blossom Learning – Courses</title>
+<meta name="description" content="Self-paced tech courses taught in English, Tamil, Hindi and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --leaf:#1f5a3a; --leaf-d:#123826; --moss:#3f8f5c; --mint:#e6f3e9; --sprout:#9fd3a8;
+  --petal:#f6c9d3; --petal-d:#d9667f; --paper:#fbfdf9; --ink:#17261d; --muted:#5b6e61; --line:#d6e5d9;
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:16px/1.6 "DM Sans",system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;color:var(--leaf-d)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--petal-d);outline-offset:2px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+section{padding:56px 0}
+h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:6px}
+.sub{color:var(--muted);margin-bottom:24px}
+
+/* nav */
+header{position:sticky;top:0;z-index:20;background:rgba(251,253,249,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:24px;height:64px}
+.logo{display:flex;align-items:center;gap:8px;font-family:Fraunces,serif;font-weight:700;font-size:1.25rem;color:var(--leaf-d)}
+.nav nav{display:flex;gap:20px;margin-left:12px;font-weight:500;font-size:.95rem}
+.nav nav a:hover{color:var(--moss)}
+.nav .sp{flex:1}
+.btn{display:inline-block;padding:10px 20px;border-radius:999px;font-weight:700;border:2px solid var(--leaf);cursor:pointer;font:inherit;font-weight:700;background:none;color:var(--leaf);transition:background .2s,color .2s}
+.btn:hover{background:var(--mint)}
+.btn.solid{background:var(--leaf);color:#fff}
+.btn.solid:hover{background:var(--leaf-d)}
+
+/* hero */
+.hero{background:linear-gradient(160deg,var(--mint),#f3faf4 60%,#fdf1f4);position:relative;overflow:hidden;padding:72px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:16px}
+.hero p{max-width:520px;color:var(--muted);font-size:1.1rem;margin-bottom:24px}
+.search{display:flex;max-width:520px;background:#fff;border:2px solid var(--sprout);border-radius:999px;padding:5px}
+.search input{flex:1;border:0;background:none;padding:10px 16px;font:inherit;min-width:0}
+.search input:focus{outline:none}
+.search:focus-within{border-color:var(--leaf)}
+.stats{display:flex;gap:28px;margin-top:28px;flex-wrap:wrap}
+.stats b{display:block;font-family:Fraunces,serif;font-size:1.6rem;color:var(--leaf)}
+.stats span{font-size:.85rem;color:var(--muted)}
+.bloom{width:100%;max-width:400px;justify-self:center}
+.bloom .spin{transform-origin:200px 200px;animation:turn 40s linear infinite}
+@keyframes turn{to{transform:rotate(360deg)}}
+
+/* live strip */
+.live{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.prog{background:var(--leaf);color:#fff;border-radius:var(--r);padding:22px}
+.prog h3{color:#fff;font-size:1.15rem;margin-bottom:4px}
+.prog small{color:var(--sprout)}
+.tag{display:inline-block;background:var(--petal);color:#8a2b42;border-radius:999px;font-size:.75rem;font-weight:700;padding:2px 10px;margin-bottom:10px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--moss);transform:translateY(-3px)}
+.thumb{height:110px;display:grid;place-items:center;font-family:Fraunces,serif;font-size:2rem;font-weight:700;color:#fff}
+.body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.body h3{font-size:1.02rem;font-family:"DM Sans",sans-serif;font-weight:700;line-height:1.35}
+.meta{display:flex;gap:10px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
+.chip{background:var(--mint);color:var(--leaf);border-radius:6px;padding:1px 8px;font-weight:500}
+.foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px dashed var(--line)}
+.price{font-weight:700;color:var(--leaf-d)}
+.price.free{color:var(--petal-d)}
+.rate{color:#b7791f;font-weight:700}
+
+/* paths */
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.path{background:var(--mint);border-radius:var(--r);padding:24px}
+.path ul{list-style:none;padding:0;margin:12px 0 16px;color:var(--muted);font-size:.92rem}
+.path li::before{content:"✿ ";color:var(--petal-d)}
+
+/* filters */
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;align-items:center}
+.pill{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 16px;font:inherit;font-size:.9rem;cursor:pointer;color:var(--ink)}
+.pill[aria-pressed=true]{background:var(--leaf);border-color:var(--leaf);color:#fff}
+select{border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;font:inherit;font-size:.9rem;background:#fff;margin-left:auto}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px}
+
+/* practice */
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.tool{border:1px solid var(--line);border-radius:var(--r);padding:20px;background:#fff}
+.tool h3{font-size:1.1rem;margin-bottom:4px}
+.tool p{font-size:.88rem;color:var(--muted)}
+
+/* cta + footer */
+.cta{background:var(--leaf-d);color:#fff;border-radius:24px;padding:40px;display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.cta h2{color:#fff;margin:0}
+.cta p{color:var(--sprout)}
+footer{background:var(--leaf-d);color:#cfe6d4;padding:48px 0 24px;margin-top:56px}
+.fcols{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:28px}
+footer h4{color:#fff;margin-bottom:10px;font-size:.95rem}
+footer a{display:block;font-size:.9rem;padding:3px 0}
+footer a:hover{color:#fff}
+.copy{border-top:1px solid #2d5a42;margin-top:32px;padding-top:16px;font-size:.82rem}
+
+@media(max-width:860px){
+  .hero .wrap{grid-template-columns:1fr}
+  .bloom{max-width:240px}
+  .nav nav{display:none}
+  .fcols{grid-template-columns:1fr 1fr}
+  select{margin-left:0}
+}
+@media(prefers-reduced-motion:reduce){.bloom .spin{animation:none}html{scroll-behavior:auto}.card{transition:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Green Blossom Learning home">
+      <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><g fill="#f6c9d3" stroke="#d9667f" stroke-width="1"><ellipse cx="20" cy="9" rx="5" ry="8"/><ellipse cx="20" cy="9" rx="5" ry="8" transform="rotate(72 20 20)"/><ellipse cx="20" cy="9" rx="5" ry="8" transform="rotate(144 20 20)"/><ellipse cx="20" cy="9" rx="5" ry="8" transform="rotate(216 20 20)"/><ellipse cx="20" cy="9" rx="5" ry="8" transform="rotate(288 20 20)"/></g><circle cx="20" cy="20" r="4" fill="#1f5a3a"/></svg>
+      Green Blossom
+    </a>
+    <nav>
+      <a href="#live">Live classes</a>
+      <a href="#courses">Courses</a>
+      <a href="#paths">Career paths</a>
+      <a href="#practice">Practice</a>
+    </nav>
+    <span class="sp"></span>
+    <a class="btn" href="#courses">Log in</a>
+    <a class="btn solid" href="#courses">Sign up</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Learn tech skills in the language you think in</h1>
+      <p>200+ self-paced courses and live programmes in English, Tamil, Hindi, Telugu and Malayalam. Start free, grow at your own pace.</p>
+      <form class="search" role="search" onsubmit="event.preventDefault();document.getElementById('courses').scrollIntoView()">
+        <input id="q" type="search" placeholder="Search Python, React, Power BI…" aria-label="Search courses">
+        <button class="btn solid" type="submit">Search</button>
+      </form>
+      <div class="stats">
+        <div><b>3M+</b><span>learners</span></div>
+        <div><b>200+</b><span>courses</span></div>
+        <div><b>5</b><span>languages</span></div>
+      </div>
+    </div>
+    <svg class="bloom" viewBox="0 0 400 400" aria-hidden="true">
+      <circle cx="200" cy="200" r="180" fill="#cfe9d5"/>
+      <g class="spin" fill="#f6c9d3" stroke="#d9667f" stroke-width="2">
+        <ellipse cx="200" cy="105" rx="42" ry="75"/>
+        <ellipse cx="200" cy="105" rx="42" ry="75" transform="rotate(72 200 200)"/>
+        <ellipse cx="200" cy="105" rx="42" ry="75" transform="rotate(144 200 200)"/>
+        <ellipse cx="200" cy="105" rx="42" ry="75" transform="rotate(216 200 200)"/>
+        <ellipse cx="200" cy="105" rx="42" ry="75" transform="rotate(288 200 200)"/>
+      </g>
+      <circle cx="200" cy="200" r="34" fill="#1f5a3a"/>
+      <text x="200" y="207" text-anchor="middle" font-family="Fraunces,serif" font-size="20" fill="#fff">&lt;/&gt;</text>
+    </svg>
+  </div>
+</section>
+
+<section id="live">
+  <div class="wrap">
+    <h2>Live classes</h2>
+    <p class="sub">Mentor-led programmes with certificates and placement support.</p>
+    <div class="live">
+      <div class="prog"><span class="tag">Certified</span><h3>Data Science &amp; GenAI</h3><small>IIT-backed programme</small></div>
+      <div class="prog"><span class="tag">New</span><h3>Agentic AI &amp; Machine Learning</h3><small>Industry-certified programme</small></div>
+      <div class="prog"><span class="tag">Certified</span><h3>AI Cloud &amp; DevOps</h3><small>Cloud-vendor certified</small></div>
+      <div class="prog"><span class="tag">Trending</span><h3>Business Analytics</h3><small>Tools, dashboards, case studies</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="courses" style="background:#f3faf4">
+  <div class="wrap">
+    <h2>Explore all courses</h2>
+    <p class="sub" id="count"></p>
+    <div class="bar" id="topics" role="group" aria-label="Filter by topic"></div>
+    <div class="bar">
+      <button class="pill" data-price="all" aria-pressed="true">All prices</button>
+      <button class="pill" data-price="free" aria-pressed="false">Free</button>
+      <button class="pill" data-price="paid" aria-pressed="false">Paid</button>
+      <select id="lang" aria-label="Language"><option value="all">All languages</option><option>English</option><option>Tamil</option></select>
+      <select id="sort" aria-label="Sort by" style="margin-left:0"><option value="pop">Most popular</option><option value="rate">Top rated</option><option value="low">Price: low to high</option><option value="short">Shortest first</option></select>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section id="paths">
+  <div class="wrap">
+    <h2>Pick a career path</h2>
+    <p class="sub">Bundles that take you from basics to job-ready.</p>
+    <div class="paths">
+      <div class="path"><h3>Data Science Mastery</h3><ul><li>Python, ML and analytics</li><li>10 hours of lessons</li><li>Average pay around ₹11 LPA</li></ul><a class="btn solid" href="#courses">Explore path</a></div>
+      <div class="path"><h3>UI/UX &amp; Web Design</h3><ul><li>Figma prototyping, UX basics</li><li>39 hours of lessons</li><li>Average pay ₹7–10 LPA</li></ul><a class="btn solid" href="#courses">Explore path</a></div>
+      <div class="path"><h3>Full Stack Web Development</h3><ul><li>HTML, CSS, JavaScript, React</li><li>61 hours of lessons</li><li>Average pay around ₹6 LPA</li></ul><a class="btn solid" href="#courses">Explore path</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="practice" style="background:#f3faf4">
+  <div class="wrap">
+    <h2>Practice platforms</h2>
+    <p class="sub">Write code, fix bugs and earn coins as you go.</p>
+    <div class="tools">
+      <div class="tool"><h3>CodeKata</h3><p>1500+ coding problems for interview prep.</p></div>
+      <div class="tool"><h3>WebKata</h3><p>Live HTML, CSS and JavaScript practice.</p></div>
+      <div class="tool"><h3>SQLKata</h3><p>Write and refine real-world queries.</p></div>
+      <div class="tool"><h3>FixTheCode</h3><p>Debug Python, C++, JavaScript and Go.</p></div>
+      <div class="tool"><h3>Online IDE</h3><p>Run code in 20+ languages in the browser.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta">
+      <div><h2>Not sure where to start?</h2><p>Tell us your goal and we will suggest a course.</p></div>
+      <a class="btn" style="background:var(--petal);border-color:var(--petal);color:#6b1f33" href="#courses">Request a callback</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div><h4>Green Blossom Learning</h4><p style="font-size:.9rem">Tech education that speaks your language. A demo site inspired by course catalogue layouts.</p></div>
+      <div><h4>Popular courses</h4><a href="#courses">Python</a><a href="#courses">Java</a><a href="#courses">AWS</a><a href="#courses">Angular</a></div>
+      <div><h4>Self-paced</h4><a href="#courses">Paid courses</a><a href="#courses">Free courses</a><a href="#paths">Combos</a></div>
+      <div><h4>Practice</h4><a href="#practice">CodeKata</a><a href="#practice">WebKata</a><a href="#practice">SQLKata</a><a href="#practice">IDE</a></div>
+      <div><h4>Company</h4><a href="#top">About us</a><a href="#top">FAQs</a><a href="#top">Contact</a><a href="#top">Privacy</a></div>
+    </div>
+    <p class="copy">© 2026 Green Blossom Learning. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const C=[
+["Python Programming Zero to Hero","Programming","English",4.2,23,"344.8k",1499],
+["Python Programming Course in Tamil","Programming","Tamil",4.4,16,"256.0k",0],
+["Generative AI: Build AI Apps with LLMs","AI & ML","English",4.5,7,"267.2k",499],
+["HTML & CSS Complete Course","Web Development","English",4.4,17,"20.0k",1999],
+["React.js for Beginners","Web Development","English",4.3,6,"2.1k",3499],
+["Django Framework: Basic to Advanced","Web Development","English",4.0,15,"2.0k",2499],
+["Next.js","Web Development","English",4.1,10,"2.0k",2499],
+["TypeScript","Web Development","English",4.6,4,"2.0k",1499],
+["Prompt Engineering Certification","AI & ML","English",4.5,6,"2.0k",799],
+["Agentic AI: AI-Powered Job Research","AI & ML","English",4.7,2,"2.0k",1499],
+["Microsoft Power BI Complete Course","Data","English",4.5,8,"4.0k",999],
+["Data Analysis with Pandas","Data","English",4.6,5,"2.0k",1499],
+["Data Visualization Using Excel","Data","English",4.5,14,"3.2k",3499],
+["Cricket Analytics: IPL Data with Python","Data","English",4.3,2,"2.0k",799],
+["Data Science & Analytics Certification","Data","English",4.5,4,"16.7k",0],
+["Blockchain Fundamentals","Security","English",4.5,4,"5.9k",0],
+["Ethical Hacking for Beginners","Security","English",4.4,3,"3.5k",0],
+["HTML & CSS Projects for Beginners","Web Development","English",4.4,3,"3.5k",0],
+["Digital Marketing Masterclass","Data","English",4.4,26,"4.9k",0],
+["Oracle PL/SQL Programming","Data","English",4.0,4,"1.0k",1499]
+];
+const hue={"Programming":"#3f8f5c","Web Development":"#1f5a3a","AI & ML":"#5aa77a","Data":"#2f7a6b","Security":"#4a6b3a"};
+const num=s=>parseFloat(s)*(s.includes("k")?1000:1);
+const st={topic:"All",price:"all",q:""};
+const $=id=>document.getElementById(id);
+const topics=["All",...new Set(C.map(c=>c[1]))];
+$("topics").innerHTML=topics.map(t=>`<button class="pill" data-topic="${t}" aria-pressed="${t=="All"}">${t}</button>`).join("");
+
+function render(){
+  const lang=$("lang").value,sort=$("sort").value;
+  let list=C.filter(c=>(st.topic=="All"||c[1]==st.topic)&&(lang=="all"||c[2]==lang)&&
+    (st.price=="all"||(st.price=="free")==(c[6]==0))&&c[0].toLowerCase().includes(st.q));
+  const by={pop:(a,b)=>num(b[5])-num(a[5]),rate:(a,b)=>b[3]-a[3],low:(a,b)=>a[6]-b[6],short:(a,b)=>a[4]-b[4]};
+  list.sort(by[sort]);
+  $("count").textContent=list.length+" course"+(list.length==1?"":"s")+" found";
+  $("grid").innerHTML=list.length?list.map(c=>`
+    <article class="card">
+      <div class="thumb" style="background:${hue[c[1]]}">${c[0].split(" ")[0].slice(0,12)}</div>
+      <div class="body">
+        <div class="meta"><span class="chip">${c[2]}</span><span class="rate">★ ${c[3]}</span><span>${c[4]} hrs</span></div>
+        <h3>${c[0]}</h3>
+        <div class="meta">${c[5]}+ enrolled</div>
+        <div class="foot"><span class="price ${c[6]?"":"free"}">${c[6]?"₹"+c[6].toLocaleString("en-IN"):"Free"}</span><a class="btn" style="padding:5px 14px;font-size:.85rem" href="#courses">View</a></div>
+      </div>
+    </article>`).join(""):'<p class="empty">No courses match. Try clearing a filter or search.</p>';
+}
+document.addEventListener("click",e=>{
+  const p=e.target.closest(".pill");if(!p)return;
+  if(p.dataset.topic){st.topic=p.dataset.topic;document.querySelectorAll("[data-topic]").forEach(b=>b.setAttribute("aria-pressed",b==p))}
+  if(p.dataset.price){st.price=p.dataset.price;document.querySelectorAll("[data-price]").forEach(b=>b.setAttribute("aria-pressed",b==p))}
+  render();
+});
+$("q").addEventListener("input",e=>{st.q=e.target.value.trim().toLowerCase();render()});
+$("lang").addEventListener("change",render);$("sort").addEventListener("change",render);
+render();
+</script>
+</body>
+</html>
